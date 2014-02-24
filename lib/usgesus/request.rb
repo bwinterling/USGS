@@ -17,38 +17,44 @@ module Usgesus
 
       gauge = Usgesus::Gauge.new
 
-      measurments = []
+      measurements = []
 
       time_series.each do |ts|
         gauge.gauge_id = ts["sourceInfo"]["siteCode"].first["value"]
         gauge.site_name =  ts["sourceInfo"]["siteName"]
-        gauge.geo_location = ts["sourceInfo"]["geoLocation"]["geoLocation"]
-        #create measurements array
+        gauge.geo_location = ts["sourceInfo"]["geoLocation"]["geogLocation"]
+        unit = ts["variable"]["unit"]["unitAbbreviation"]
+        values = ts["values"].first["value"]
+        values.each do |value|
+          measurements << {
+            "dateTime" => value["dateTime"],
+            "unit" => unit,
+            "value" => value["value"]
+          }
+        end
       end
-
-      gauge.measurments = measurments
-
-      #for first item in time series array
-        #update gauge id
-        #update site_name
-        #update geo_location
-      #for each item in time series array
-        #iterate over the returned values
-
+      gauge.measurements = measurements
+      gauge
     end
 
-    def self.gauge_response
-      {
-        "provider" => "usgs",
-        "gauge_id" => "",
-        "site_name" => "",
-        "geo_location" => [],
-        "measurments" => [{
-            "date" => "",
-            "unit" => "",
-            "value" => ""
-          }]
-      }
+    def self.by_state(state_abbr)
+      response = Faraday.get(
+        "http://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=#{state_abbr}"
+        )
+      time_series = JSON.parse(response.body)["value"]["timeSeries"]
+
+      #for each hash in the time series
+        #add the site_id as the key
+
+          #add site_name to that key
+          #add geo_location to that key
+          #capture unit
+          #for each value, add measurement hash to key
+
+      time_series.each do |ts|
+        binding.pry
+      end
+      #return array of gauges objects
     end
 
   end
