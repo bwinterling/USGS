@@ -24,7 +24,7 @@ The information you can get with this gem are listed below:
 * **Make Request** You can provide the request a two letter state code or an 8 digit USGS gauge id.
 ```ruby
     Usegesus::Request.measurements_by("09057500")
-    Usegesus::Request.measurements_by("CO")  #must be capitalized
+    Usegesus::Request.measurements_by("CO")
 ```
 
 * **By Date Range** You can also provide an optional date range to restrict the returned gauge measurements.
@@ -53,7 +53,8 @@ The information you can get with this gem are listed below:
         "unit"=>"uS/cm @25C",
         "value"=>"185"}],
         @provider="usgs",
-        @site_name="BLUE RIVER BELOW GREEN MOUNTAIN RESERVOIR, CO"
+        @site_name="BLUE RIVER BELOW GREEN MOUNTAIN RESERVOIR, CO",
+        @state="CO"
     >, ____additionalGaugeObjects____ ]
 ```
 

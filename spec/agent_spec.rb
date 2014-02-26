@@ -7,6 +7,7 @@ describe Usgesus::Request do
     site_name = "BLUE RIVER BELOW GREEN MOUNTAIN RESERVOIR, CO"
     response = Usgesus::Request.measurements_by(gauge_id)
     expect(response.first.site_name).to eq site_name
+    binding.pry
   end
 
   it "should return streamflow by gauge id for a specific date" do
