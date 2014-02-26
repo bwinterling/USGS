@@ -21,13 +21,21 @@ Or install it yourself as:
 
 The information you can get with this gem are listed below:
 
-* **by_gauge** - This method requires a 8 digit string to be used as the id
+* **Make Request** You can provide the request a two letter state code or an 8 digit USGS gauge id.
 ```ruby
-    Usegesus::Request.by_gauge("09057500")
+    Usegesus::Request.measurements_by("09057500")
+    Usegesus::Request.measurements_by("CO")  #must be capitalized
 ```
-* This is the returned gauge object containing all the recent streamflow data
+
+* **By Date Range** You can also provide an optional date range to restrict the returned gauge measurements.
 ```ruby
-    #<Usgesus::Gauge:0x007f875d878ac0
+    date_range = ((Date.today - 2)..Date.today)
+    Usegesus::Request.measurements_by("09057500", date_range)
+```
+
+* **Response** An array of gauge objects is returned.
+```ruby
+    [#<Usgesus::Gauge:0x007f875d878ac0
         @gauge_id="09057500",
         @geo_location=
         {"srs"=>"EPSG:4326", "latitude"=>39.88026354, "longitude"=>-106.3339175},
@@ -46,7 +54,7 @@ The information you can get with this gem are listed below:
         "value"=>"185"}],
         @provider="usgs",
         @site_name="BLUE RIVER BELOW GREEN MOUNTAIN RESERVOIR, CO"
-    >
+    >, ____additionalGaugeObjects____ ]
 ```
 
 ## Contributing
