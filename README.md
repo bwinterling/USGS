@@ -1,4 +1,4 @@
-# Usgesus
+# Usgs
 
 Usegus is a wrapper gem for the waterservices.usgs.gov api. It allows 
 you to query the api for a particular streams details .
@@ -23,19 +23,19 @@ The information you can get with this gem are listed below:
 
 * **Make Request** You can provide the request a two letter state code or an 8 digit USGS gauge id.
 ```ruby
-    Usegesus::Request.measurements_by("09057500")
-    Usegesus::Request.measurements_by("CO")
+    Usgs::Request.measurements_by("09057500")
+    Usgs::Request.measurements_by("CO")
 ```
 
 * **By Date Range** You can also provide an optional date range to restrict the returned gauge measurements.
 ```ruby
     date_range = ((Date.today - 2)..Date.today)
-    Usegesus::Request.measurements_by("09057500", date_range)
+    Usgs::Request.measurements_by("09057500", date_range)
 ```
 
 * **Response** An array of gauge objects is returned.
 ```ruby
-    [#<Usgesus::Gauge:0x007f875d878ac0
+    [#<Usgs::Gauge:0x007f875d878ac0
         @gauge_id="09057500",
         @geo_location=
         {"srs"=>"EPSG:4326", "latitude"=>39.88026354, "longitude"=>-106.3339175},
@@ -60,7 +60,7 @@ The information you can get with this gem are listed below:
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/duolingo/fork )
+1. Fork it (click the fork button up top)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

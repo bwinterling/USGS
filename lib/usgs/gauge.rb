@@ -1,4 +1,4 @@
-module Usgesus
+module Usgs
   class Gauge
     attr_reader :provider
     attr_accessor :gauge_id, :site_name, :geo_location, :measurements, :state

@@ -1,4 +1,4 @@
-module Usgesus
+module Usgs
   class Request
 
     def self.measurements_by(input, date_range = nil)
@@ -36,7 +36,7 @@ module Usgesus
 
       # convert the hash to individual gauge objects
       streams.map do |gauge_id, data|
-        Usgesus::Gauge.new(
+        Usgs::Gauge.new(
           gauge_id:  gauge_id,
           site_name: data[:sitename],
           state: data[:state],

@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'usgesus/version'
+require 'usgs/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "usgesus"
-  spec.version       = Usgesus::VERSION
+  spec.name          = "usgs"
+  spec.version       = Usgs::VERSION
   spec.authors       = ["Brian Winterling"]
   spec.email         = ["bwinterling@yahoo.com"]
   spec.description   = %q{Access the USGS Water Services API for streamflow data.}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.summary       = %q{Single query access to USGS Streamflow data returning Gauge objects.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

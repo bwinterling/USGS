@@ -1,7 +1,7 @@
 require 'bundler/setup'
 Bundler.setup
 
-require 'usgesus' # and any other gems you need
+require 'usgs' # and any other gems you need
 
 RSpec.configure do |config|
   # some (optional) config here
