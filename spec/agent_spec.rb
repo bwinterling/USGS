@@ -22,10 +22,22 @@ describe Usgesus::Request do
   end
 
   it "should return recent streamflow by state" do
-    state = "CA"
-    response = Usgesus::Request.by_state(state)
-    expect(response.first.site_name.match(/\w{2}[.]?$/)).to eq "CA"
+    state = "AK"
+    streams = Usgesus::Request.by_state(state)
+    number_of_streams = streams.count
+    expect(number_of_streams).to eq 534
+    expect(streams.first.gauge_id).to eq "15008000"
   end
 
-  it "should return streamflow by state for a specific date"
+  it "should return streamflow by state for a specific date" do
+    state = "AK"
+    date_range = ((Date.today - 2)..Date.today)
+    streams = Usgesus::Request.by_state(state, date_range)
+    #site name ends with state code
+    expect(streams.first.site_name[-3..-1]).to include(state)
+    #measurements date is within our date range
+   streams.first.measurements.each do |m|
+     expect(date_range).to include(Date.parse(m["dateTime"]))
+   end
+  end
 end
