@@ -25,7 +25,7 @@ The information you can get with this gem are listed below:
 ```ruby
     Usegesus::Request.by_gauge("09057500")
 ```
-* Returned gauge object containing all the recent streamflow data
+* This is the returned gauge object containing all the recent streamflow data
 ```ruby
     #<Usgesus::Gauge:0x007f875d878ac0
         @gauge_id="09057500",
