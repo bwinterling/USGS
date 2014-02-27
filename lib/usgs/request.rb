@@ -56,9 +56,9 @@ module Usgs
         request_params = "&stateCd=#{input}&startDT=#{date_range.first.to_s}&endDT=#{date_range.last.to_s}"
       elsif input.length == 2
         request_params = "&stateCd=#{input}"
-      elsif input.length == 8 && date_range
+      elsif input.length >= 8 && date_range
         request_params = "&sites=#{input}&startDT=#{date_range.first.to_s}&endDT=#{date_range.last.to_s}"
-      elsif input.length == 8
+      elsif input.length >= 8
         request_params = "&sites=#{input}"
       else
         return {:status => "Invalid Request"}
