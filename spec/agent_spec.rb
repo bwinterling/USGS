@@ -17,14 +17,14 @@ describe Usgs::Request do
     measurements = response.measurements
     in_date_range = measurements.all? { |msmt| date_range.include?(Date.parse(msmt["dateTime"])) }
     expect(response.site_name).to eq site_name
-    expect(in_date_range).to be_true
+    expect(in_date_range).to be true
   end
 
   it "should return recent streamflow by state" do
     state = "AK"
     response = Usgs::Request.measurements_by(state)
     number_of_streams = response.count
-    expect(number_of_streams).to eq 534
+    expect(number_of_streams).to eq 536
     expect(response.first.gauge_id).to eq "15008000"
   end
 
