@@ -5,12 +5,12 @@ module Usgs
 
     def initialize(params={})
       @provider = "usgs"
-      @gauge_id = params[:gauge_id] || ""
-      @site_name = params[:site_name] || ""
-      @state = params[:state] || ""
-      @geo_location = params[:geo_location] || {}
-      @measurements = params[:measurements] || []
+      @gauge_id = params.fetch(:gauge_id, "")
+      @gauge_id = params.fetch(:gauge_id, "")
+      @site_name = params.fetch(:site_name, "")
+      @state = params.fetch(:state, "")
+      @geo_location = params.fetch(:geo_location, {})
+      @measurements = params.fetch(:measurements, [])
     end
-
   end
 end
