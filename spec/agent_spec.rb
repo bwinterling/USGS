@@ -24,7 +24,7 @@ describe Usgs::Request do
     state = "AK"
     response = Usgs::Request.measurements_by(state)
     number_of_streams = response.count
-    expect(number_of_streams).to eq 536
+    expect(number_of_streams).to eq 136
     expect(response.first.gauge_id).to eq "15008000"
   end
 
