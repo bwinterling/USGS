@@ -49,9 +49,9 @@ module Usgs
 
   private
 
+    # https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06614800&siteType=ST&siteStatus=active&parameterCd=00060
     def self.make_api_request(input, date_range=nil)
-      base_url = "http://waterservices.usgs.gov/nwis/dv/?format=json"
-      # testing if State Code or Gauge Id was passed as input
+      base_url = "https://waterservices.usgs.gov/nwis/iv/?format=json"
       if input.length == 2 && date_range
         request_params = "&stateCd=#{input}&startDT=#{date_range.first.to_s}&endDT=#{date_range.last.to_s}"
       elsif input.length == 2
