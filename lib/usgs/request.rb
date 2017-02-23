@@ -47,7 +47,7 @@ module Usgs
 
     end
 
-  private
+    private
 
     # https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06614800&siteType=ST&siteStatus=active&parameterCd=00060
     def self.make_api_request(input, date_range=nil)
