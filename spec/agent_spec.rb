@@ -14,8 +14,7 @@ describe Usgs::Request do
     site_name = "BLUE RIVER BELOW GREEN MOUNTAIN RESERVOIR, CO"
     date_range = ((Date.today - 2)..Date.today)
     response = Usgs::Request.measurements_by(gauge_id, date_range).first
-    measurements = response.measurements
-    in_date_range = measurements.all? { |msmt| date_range.include?(Date.parse(msmt["dateTime"])) }
+    in_date_range = date_range.include?(Date.parse(response.datetime))
     expect(response.site_name).to eq site_name
     expect(in_date_range).to be true
   end
@@ -35,9 +34,7 @@ describe Usgs::Request do
     #site name ends with state code
     expect(response.first.site_name[-3..-1]).to include(state)
     #measurements date is within our date range
-    response.first.measurements.each do |m|
-      expect(date_range).to include(Date.parse(m["dateTime"]))
-    end
+    expect(date_range).to include(Date.parse(response.first.datetime))
   end
 
   it "should return Invalid Request if statecode or gauge_id are incorrect" do

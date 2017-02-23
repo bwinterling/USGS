@@ -27,10 +27,10 @@ module Usgs
 
         values.each do |value|
           streams[site_id][:measurements] << {
-            "dateTime" => value["dateTime"],
             "unit" => unit,
             "value" => value["value"]
           }
+          streams[site_id][:dateTime] = value["dateTime"]
         end
       end
 
@@ -41,10 +41,10 @@ module Usgs
           site_name: data[:sitename],
           state: data[:state],
           geo_location:  data[:geolocation],
-          measurements: data[:measurements]
+          measurements: data[:measurements],
+          datetime: data[:dateTime]
         )
       end
-
     end
 
     private
