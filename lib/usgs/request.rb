@@ -14,7 +14,7 @@ module Usgs
         state_property = ts["sourceInfo"]["siteProperty"].find { |p| p["name"] == "stateCd" }
         state = state_lookup[state_property["value"]]
         values =  ts["values"].first["value"]
-        unit = ts["variable"]["unit"]["unitAbbreviation"]
+        unit = ts["variable"]["variableDescription"]
         measurements = []
 
         unless streams.key?(site_id)
