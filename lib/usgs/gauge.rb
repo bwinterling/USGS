@@ -11,7 +11,6 @@ module Usgs
       @site_name = params[:site_name] || ""
       @state = params[:state] || ""
       @geo_location = params[:geo_location] || {}
-      # @measurements = params[:measurements] || []
       parse_measurement_data(params[:measurements])
       @datetime = params[:datetime]
     end
