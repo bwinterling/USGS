@@ -14,7 +14,7 @@ module Usgs
         state_property = ts["sourceInfo"]["siteProperty"].find { |p| p["name"] == "stateCd" }
         state = state_lookup[state_property["value"]]
         values =  ts["values"].first["value"]
-        unit = ts["variable"]["unit"]["unitAbbreviation"]
+        unit = ts["variable"]["variableDescription"]
         measurements = []
 
         unless streams.key?(site_id)
@@ -27,10 +27,10 @@ module Usgs
 
         values.each do |value|
           streams[site_id][:measurements] << {
-            "dateTime" => value["dateTime"],
             "unit" => unit,
             "value" => value["value"]
           }
+          streams[site_id][:dateTime] = value["dateTime"]
         end
       end
 
@@ -41,17 +41,16 @@ module Usgs
           site_name: data[:sitename],
           state: data[:state],
           geo_location:  data[:geolocation],
-          measurements: data[:measurements]
+          measurements: data[:measurements],
+          datetime: data[:dateTime]
         )
       end
-
     end
 
-  private
+    private
 
     def self.make_api_request(input, date_range=nil)
-      base_url = "http://waterservices.usgs.gov/nwis/dv/?format=json"
-      # testing if State Code or Gauge Id was passed as input
+      base_url = "https://waterservices.usgs.gov/nwis/iv/?format=json"
       if input.length == 2 && date_range
         request_params = "&stateCd=#{input}&startDT=#{date_range.first.to_s}&endDT=#{date_range.last.to_s}"
       elsif input.length == 2
